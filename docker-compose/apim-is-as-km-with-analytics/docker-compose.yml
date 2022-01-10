@@ -62,7 +62,41 @@ services:
         condition: service_healthy
     volumes:
       - ./conf/apim:/home/wso2carbon/wso2-config-volume
+      - apim_data_server:/home/wso2carbon/repository/deployment/server
+      - apim_data_tenants:/home/wso2carbon/repository/tenants
+      - apim_data_solr:/home/wso2carbon/solr
+      - apim_data_database:/home/wso2carbon/repository/database
+      - apim_data_userstores:/home/wso2carbon/repository/deployment/server/userstores
+      - apim_data_:/home/wso2carbon/repository/resources
+      - apim_data_:/home/wso2carbon/repository/conf
+      - apim_data_:/home/wso2carbon/bin 
     ports:
       - "9443:9443"
       - "8280:8280"
       - "8243:8243"
+  micro-integrator:
+    build: ./dockerfiles/mi
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "8253"]
+      interval: 10s
+      start_period: 30s
+      retries: 10
+    depends_on:
+      mysql:
+        condition: service_healthy
+      api-manager:
+        condition: service_healthy
+    volumes:
+      - ./conf/mi:/home/wso2carbon/wso2-config-volume
+    ports:
+      - "8290:8290"
+      - "8253:8253"
+  volumes:
+      apim_data_server:
+      apim_data_tenants:
+      apim_data_solr:
+      apim_data_database:
+      apim_data_userstores:
+      apim_data_resources:
+      apim_data_conf:
+      apim_data_bin:
