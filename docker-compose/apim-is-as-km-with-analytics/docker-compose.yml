@@ -13,6 +13,15 @@
 # limitations under the License.
 
 version: '2.4'
+volumes:
+      apim_data_server:
+      apim_data_tenants:
+      apim_data_solr:
+      apim_data_database:
+      apim_data_userstores:
+      apim_data_resources:
+      apim_data_conf:
+      apim_data_bin:
 services:
   mysql:
     image: mysql:5.7.34
@@ -91,12 +100,3 @@ services:
     ports:
       - "8290:8290"
       - "8253:8253"
-  volumes:
-      apim_data_server:
-      apim_data_tenants:
-      apim_data_solr:
-      apim_data_database:
-      apim_data_userstores:
-      apim_data_resources:
-      apim_data_conf:
-      apim_data_bin:
