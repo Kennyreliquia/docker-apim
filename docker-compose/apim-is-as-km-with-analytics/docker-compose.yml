@@ -67,9 +67,9 @@ services:
       - apim_data_solr:/home/wso2carbon/solr
       - apim_data_database:/home/wso2carbon/repository/database
       - apim_data_userstores:/home/wso2carbon/repository/deployment/server/userstores
-      - apim_data_:/home/wso2carbon/repository/resources
-      - apim_data_:/home/wso2carbon/repository/conf
-      - apim_data_:/home/wso2carbon/bin 
+      - apim_data_resources:/home/wso2carbon/repository/resources
+      - apim_data_conf:/home/wso2carbon/repository/conf
+      - apim_data_bin:/home/wso2carbon/bin 
     ports:
       - "9443:9443"
       - "8280:8280"
